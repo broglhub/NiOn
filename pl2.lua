@@ -2065,7 +2065,7 @@ end
 end)
 game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
 if key == 'v' then
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Shadows_Overlord.Character.HumanoidRootPart.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").Shadows_Overlord.Character.HumanoidRootPart.CFrame
 end
 end)
 local slot1={"M4A1"}
