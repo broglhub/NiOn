@@ -74,6 +74,8 @@ local rejoin = Instance.new("TextButton")
 local aron = Instance.new("TextButton")
 local aroff = Instance.new("TextButton")
 local customteam = Instance.new("TextButton")
+local getplr = Instance.new("TextBox")
+local lkplr = Instance.new("TextButton")
 
 ScreenGui.Parent = game.CoreGui
 
@@ -2016,6 +2018,143 @@ customteam.MouseButton1Down:connect(function()
 saved = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 game.Workspace.Remote.loadchar:InvokeServer("LocalPlayer", "Fog")
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
+end)
+
+getplr.Name = "getplr"
+getplr.Parent = main
+getplr.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+getplr.BorderColor3 = Color3.fromRGB(255, 0, 0)
+getplr.Position = UDim2.new(0.483648866, 0, 0.088888891, 0)
+getplr.Size = UDim2.new(0, 75, 0, 29)
+getplr.Font = Enum.Font.SourceSans
+getplr.PlaceholderColor3 = Color3.fromRGB(255, 0, 0)
+getplr.PlaceholderText = "Player here"
+getplr.Text = ""
+getplr.TextColor3 = Color3.fromRGB(255, 0, 0)
+getplr.TextSize = 14.000
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local function RemoveSpaces(String)
+return String:gsub("%s+", "")
+end
+
+local function FindPlayer(String)
+String = RemoveSpaces(String)
+for _, _Player in pairs(Players:GetPlayers()) do
+if _Player.Name:lower():match('^'..String:lower()) then
+return _Player
+end
+end
+return nil
+end
+
+lkplr.Name = "lkplr"
+lkplr.Parent = main
+lkplr.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+lkplr.BorderColor3 = Color3.fromRGB(255, 0, 0)
+lkplr.Position = UDim2.new(0.483648866, 0, 0.160493821, 0)
+lkplr.Size = UDim2.new(0, 75, 0, 30)
+lkplr.Font = Enum.Font.SourceSans
+lkplr.Text = "Loop off"
+lkplr.TextColor3 = Color3.fromRGB(255, 0, 0)
+lkplr.TextSize = 14.000
+lkplr.MouseButton1Down:connect(function()
+if lkplr.Text == "Loop off" then
+lkplr.Text = "Loop on"
+local lk = true
+while lk == true do wait()
+local target = FindPlayer(getplr.Text)
+local A_1 = 
+{
+	[1] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(277.738678, 6.89340925, 287.773712)), 
+	["Distance"] = 4.7204174995422, 
+	["Cframe"] = CFrame.new(832.049377, 101.392006, 2300.97168, 0.843892097, -0.0554918349, 0.533635378, 0, 0.994636595, 0.103430569, -0.536512911, -0.0872842371, 0.839366019), 
+	["Hit"] = target.Character.Head
+}, 
+	[2] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(303.047546, 21.3568707, 260.203888)), 
+	["Distance"] = 4.8114862442017, 
+	["Cframe"] = CFrame.new(832.390259, 101.550629, 2300.74097, 0.738044441, -0.112958886, 0.665229917, 7.45057971e-09, 0.985887885, 0.16740793, -0.674752235, -0.123554483, 0.727628946), 
+	["Hit"] = target.Character.Head
+}, 
+	[3] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(296.800507, 7.00420141, 268.067932)), 
+	["Distance"] = 4.444625377655, 
+	["Cframe"] = CFrame.new(832.185486, 101.391617, 2300.70264, 0.775115669, -0.0692948848, 0.628007889, 7.45057971e-09, 0.993967533, 0.109675139, -0.631819367, -0.0850109085, 0.770439863), 
+	["Hit"] = target.Character.Head
+}, 
+	[4] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(284.930573, 11.9850616, 280.483368)), 
+	["Distance"] = 4.6211166381836, 
+	["Cframe"] = CFrame.new(832.10083, 101.445007, 2300.86963, 0.820150614, -0.0735745132, 0.567397356, 0, 0.991697431, 0.128593579, -0.572147667, -0.105466105, 0.81334126), 
+	["Hit"] = target.Character.Head
+}, 
+	[5] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(294.625824, 2.15741801, 270.538269)), 
+	["Distance"] = 4.4639973640442, 
+	["Cframe"] = CFrame.new(832.169434, 101.341301, 2300.73438, 0.784266233, -0.0537625961, 0.618090749, -3.7252903e-09, 0.99623847, 0.086654529, -0.620424569, -0.0679602176, 0.781316102), 
+	["Hit"] = target.Character.Head
+}
+}
+local A_2 = game.Players.LocalPlayer.Backpack["Remington 870"]
+game:GetService("ReplicatedStorage").ShootEvent:FireServer(A_1, A_2)
+game:GetService("ReplicatedStorage").ShootEvent:FireServer(A_1, A_2)
+end
+elseif lkplr.Text == "Loop on" then
+lkplr.Text = "Loop off"
+local lk = false
+while lk == true do wait()
+local target = FindPlayer(getplr.Text)
+local A_1 = 
+{
+	[1] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(277.738678, 6.89340925, 287.773712)), 
+	["Distance"] = 4.7204174995422, 
+	["Cframe"] = CFrame.new(832.049377, 101.392006, 2300.97168, 0.843892097, -0.0554918349, 0.533635378, 0, 0.994636595, 0.103430569, -0.536512911, -0.0872842371, 0.839366019), 
+	["Hit"] = target.Character.Head
+}, 
+	[2] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(303.047546, 21.3568707, 260.203888)), 
+	["Distance"] = 4.8114862442017, 
+	["Cframe"] = CFrame.new(832.390259, 101.550629, 2300.74097, 0.738044441, -0.112958886, 0.665229917, 7.45057971e-09, 0.985887885, 0.16740793, -0.674752235, -0.123554483, 0.727628946), 
+	["Hit"] = target.Character.Head
+}, 
+	[3] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(296.800507, 7.00420141, 268.067932)), 
+	["Distance"] = 4.444625377655, 
+	["Cframe"] = CFrame.new(832.185486, 101.391617, 2300.70264, 0.775115669, -0.0692948848, 0.628007889, 7.45057971e-09, 0.993967533, 0.109675139, -0.631819367, -0.0850109085, 0.770439863), 
+	["Hit"] = target.Character.Head
+}, 
+	[4] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(284.930573, 11.9850616, 280.483368)), 
+	["Distance"] = 4.6211166381836, 
+	["Cframe"] = CFrame.new(832.10083, 101.445007, 2300.86963, 0.820150614, -0.0735745132, 0.567397356, 0, 0.991697431, 0.128593579, -0.572147667, -0.105466105, 0.81334126), 
+	["Hit"] = target.Character.Head
+}, 
+	[5] = 
+{
+	["RayObject"] = Ray.new(Vector3.new(827.412415, 101.489777, 2296.84326), Vector3.new(294.625824, 2.15741801, 270.538269)), 
+	["Distance"] = 4.4639973640442, 
+	["Cframe"] = CFrame.new(832.169434, 101.341301, 2300.73438, 0.784266233, -0.0537625961, 0.618090749, -3.7252903e-09, 0.99623847, 0.086654529, -0.620424569, -0.0679602176, 0.781316102), 
+	["Hit"] = target.Character.Head
+}
+}
+local A_2 = game.Players.LocalPlayer.Backpack["Remington 870"]
+game:GetService("ReplicatedStorage").ShootEvent:FireServer(A_1, A_2)
+game:GetService("ReplicatedStorage").ShootEvent:FireServer(A_1, A_2)
+end
+end
 end)
 
 game.Players.LocalPlayer.OsPlatform = "Brandon's personal cutie gui :3"
