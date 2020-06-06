@@ -74,8 +74,6 @@ local rejoin = Instance.new("TextButton")
 local aron = Instance.new("TextButton")
 local aroff = Instance.new("TextButton")
 local customteam = Instance.new("TextButton")
-local getplr = Instance.new("TextBox")
-local lkplr = Instance.new("TextButton")
 
 ScreenGui.Parent = game.CoreGui
 
@@ -2020,6 +2018,7 @@ game.Workspace.Remote.loadchar:InvokeServer("LocalPlayer", "Fog")
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
 end)
 
+
 getplr.Name = "getplr"
 getplr.Parent = main
 getplr.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -2189,14 +2188,14 @@ plr = game.Players.LocalPlayer
 mouse = plr:GetMouse()
 mouse.KeyDown:connect(function(key)
 
-if key == "m" then
+if key == "e" then
 noclip = not noclip
 game.Players.LocalPlayer.Humanoid:ChangeState(11)
 end
 end)
 
 game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
-if key == 'z' then
+if key == 'q' then
 saved = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 game:GetService("Workspace").Remote.loadchar:InvokeServer("LocalPlayer")
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
@@ -2207,34 +2206,24 @@ if key == 'v' then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players").Shadows_Overlord.Character.HumanoidRootPart.CFrame
 end
 end)
-local slot1={"M4A1"}
-local slot2={"Remington 870"}
-local slot3={"M9"}
+local slot1={"M9"}
+local slot2={"M4A1"}
+local slot3={"Remington 870"}
 wait(0.01)
-for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do
-if Z.Name==slot1[1]then
-local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
-end
-end
-wait(0.08)
-for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do
-if Z.Name==slot2[1]then
-local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
-end
-end
-wait(0.08)
-for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do
-if Z.Name==slot3[1]then
-local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
-end
-end
+for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do if Z.Name==slot1[1]then local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)end end
+wait(0.1)
+for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do if Z.Name==slot2[1]then local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)end end
+wait(0.1)
+for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do if Z.Name==slot3[1]then local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)end end
 wait(0.1)
 local player = game:GetService("Players").LocalPlayer
 local gun    = player.Backpack:FindFirstChild("M9")
 local sM     = require(gun:FindFirstChild("GunStates"))
 sM["MaxAmmo"] = math.huge
 sM["StoredAmmo"] = math.huge
+sM["FireRate"] = 0.0001
 sM["AmmoPerClip"] = math.huge
+sM["ReloadTime"] = 0.05
 sM["CurrentAmmo"] = math.huge
 
 local player = game:GetService("Players").LocalPlayer
@@ -2242,7 +2231,9 @@ local gun    = player.Backpack:FindFirstChild("M4A1")
 local sM     = require(gun:FindFirstChild("GunStates"))
 sM["MaxAmmo"] = math.huge
 sM["StoredAmmo"] = math.huge
+sM["FireRate"] = 0.06
 sM["AmmoPerClip"] = math.huge
+sM["ReloadTime"] = 0.05
 sM["CurrentAmmo"] = math.huge
 
 local player = game:GetService("Players").LocalPlayer
@@ -2250,34 +2241,28 @@ local gun    = player.Backpack:FindFirstChild("Remington 870")
 local sM     = require(gun:FindFirstChild("GunStates"))
 sM["MaxAmmo"] = math.huge
 sM["StoredAmmo"] = math.huge
+sM["FireRate"] = 0.8
 sM["AmmoPerClip"] = math.huge
+sM["ReloadTime"] = 0.05
+sM["Bullets"] = 18
 sM["CurrentAmmo"] = math.huge
-game.Players.LocalPlayer.CharacterAdded:connect(function(Character)
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function(Character)
 wait(0.01)
-for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do
-if Z.Name==slot1[1]then
-local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
-end
-end
-wait(0.08)
-for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do
-if Z.Name==slot2[1]then
-local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
-end
-end
-wait(0.08)
-for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do
-if Z.Name==slot3[1]then
-local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
-end
-end
+for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do if Z.Name==slot1[1]then local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)end end
+wait(0.1)
+for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do if Z.Name==slot2[1]then local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)end end
+wait(0.1)
+for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren())do if Z.Name==slot3[1]then local lol=workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)end end
 wait(0.1)
 local player = game:GetService("Players").LocalPlayer
 local gun    = player.Backpack:FindFirstChild("M9")
 local sM     = require(gun:FindFirstChild("GunStates"))
 sM["MaxAmmo"] = math.huge
 sM["StoredAmmo"] = math.huge
+sM["FireRate"] = 0.0001
 sM["AmmoPerClip"] = math.huge
+sM["ReloadTime"] = 0.05
 sM["CurrentAmmo"] = math.huge
 
 local player = game:GetService("Players").LocalPlayer
@@ -2285,7 +2270,9 @@ local gun    = player.Backpack:FindFirstChild("M4A1")
 local sM     = require(gun:FindFirstChild("GunStates"))
 sM["MaxAmmo"] = math.huge
 sM["StoredAmmo"] = math.huge
+sM["FireRate"] = 0.06
 sM["AmmoPerClip"] = math.huge
+sM["ReloadTime"] = 0.05
 sM["CurrentAmmo"] = math.huge
 
 local player = game:GetService("Players").LocalPlayer
@@ -2293,7 +2280,10 @@ local gun    = player.Backpack:FindFirstChild("Remington 870")
 local sM     = require(gun:FindFirstChild("GunStates"))
 sM["MaxAmmo"] = math.huge
 sM["StoredAmmo"] = math.huge
+sM["FireRate"] = 0.8
 sM["AmmoPerClip"] = math.huge
+sM["ReloadTime"] = 0.05
+sM["Bullets"] = 18
 sM["CurrentAmmo"] = math.huge
 end)
 
